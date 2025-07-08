@@ -1,4 +1,4 @@
-<img width="895" height="715" alt="Image" src="https://github.com/user-attachments/assets/296a7747-7e7b-4337-8760-6f72f219ef0f" />
+<img width="894" height="726" alt="Image" src="https://github.com/user-attachments/assets/ca66a5ba-549f-483f-8ec6-3f519e3d04cf" />
 
 
 # PCA Visualizer
