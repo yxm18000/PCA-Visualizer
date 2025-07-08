@@ -31,8 +31,7 @@ CSVファイルを読み込み、主成分分析（PCA）を実行して、結�
 
 ### 1. 準備
 
-1.  このプロジェクトのファイル（`gui_pca_app.py`と`setup_and_run2.txt`）を同じフォルダにダウンロードします。
-2.  `setup_and_run2.txt` のファイル名を `setup_and_run.bat` に変更します。
+1.  このプロジェクトのファイル（`gui_pca_app.py`と`setup_and_run.txt`）を同じフォルダにダウンロードします。
 
 ### 2. 実行
 
