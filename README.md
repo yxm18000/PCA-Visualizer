@@ -1,3 +1,6 @@
+<img width="895" height="715" alt="Image" src="https://github.com/user-attachments/assets/296a7747-7e7b-4337-8760-6f72f219ef0f" />
+
+
 # PCA Visualizer
 
 CSVファイルを読み込み、主成分分析（PCA）を実行して、結果を2次元の散布図でインタラクティブに可視化するGUIツールです。
