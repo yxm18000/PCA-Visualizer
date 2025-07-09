@@ -35,7 +35,8 @@ class PcaApp:
         self.numerical_df_columns = None
         self.style_widgets = {}
 
-        self.matplotlib_colors = ['blue', 'red', 'green', 'purple', 'orange', 'cyan', 'magenta', 'brown', 'gold', 'teal']
+        # ★★★ 変更点: 色の選択肢に 'white' と 'black' を追加 ★★★
+        self.matplotlib_colors = ['blue', 'red', 'green', 'purple', 'orange', 'cyan', 'magenta', 'brown', 'gold', 'teal', 'white', 'black']
         self.matplotlib_markers = ['o', 's', '^', 'D', 'v', '*', 'p', 'X', '+', 'H']
 
         self.set_dark_title_bar()
@@ -65,7 +66,6 @@ class PcaApp:
         run_button = tk.Button(top_control_frame, text="2. 分析実行", command=self.run_analysis, **button_style)
         run_button.pack(side=tk.LEFT, padx=5)
         
-        # ★★★ 変更点: エクスポートボタンを追加 ★★★
         self.export_button = tk.Button(top_control_frame, text="3. 結果をエクスポート", command=self.export_results, **button_style, state=tk.DISABLED)
         self.export_button.pack(side=tk.LEFT, padx=5)
 
@@ -131,7 +131,6 @@ class PcaApp:
             display_name = self.file_path.split('/')[-1]
             self.path_label.config(text=display_name)
             self._setup_style_ui()
-            # ★★★ 変更点: 新しいファイル選択時にエクスポートボタンを無効化 ★★★
             self.export_button.config(state=tk.DISABLED)
 
     def run_analysis(self):
@@ -139,7 +138,6 @@ class PcaApp:
             messagebox.showwarning("警告", "先にCSVファイルを選択してください。")
             return
         
-        # ★★★ 変更点: 分析開始前にボタンを無効化 ★★★
         self.export_button.config(state=tk.DISABLED)
 
         try:
@@ -174,7 +172,6 @@ class PcaApp:
             self._draw_plot_on_tab("Loadings Plot", self._create_loadings_plot)
             
             messagebox.showinfo("成功", "分析と描画が完了しました。")
-            # ★★★ 変更点: 分析成功時にエクスポートボタンを有効化 ★★★
             self.export_button.config(state=tk.NORMAL)
 
         except Exception as e:
@@ -182,14 +179,12 @@ class PcaApp:
             import traceback
             traceback.print_exc()
 
-    # ★★★ 新機能: 結果のエクスポート処理 ★★★
     def export_results(self):
         if self.pc_df is None or self.df is None:
             messagebox.showwarning("エクスポート不可", "先に分析を実行してください。")
             return
 
         try:
-            # エクスポート用のDataFrameを準備
             id_col_name = self.df.columns[0]
             columns_to_join = [self.df[[id_col_name]]]
             if 'category' in self.df.columns:
@@ -197,14 +192,12 @@ class PcaApp:
 
             export_df = self.pc_df.join(columns_to_join)
             
-            # 列の順序をID, カテゴリ, PC1, PC2...に整理
             final_columns = [id_col_name]
             if 'category' in self.df.columns:
                 final_columns.append('category')
             final_columns.extend([col for col in self.pc_df.columns if col.startswith('PC')])
             export_df = export_df.reindex(columns=final_columns)
 
-            # ファイル保存ダイアログを開く
             original_filename = self.file_path.split('/')[-1].rsplit('.', 1)[0]
             default_savename = f"{original_filename}_pca_scores.csv"
 
@@ -250,8 +243,10 @@ class PcaApp:
             default_style = {'color': 'black', 'marker': 'x'}
             for category_name, group_df in self.pc_df.groupby('category'):
                 style = style_map.get(str(category_name), default_style)
+                # ★★★ 変更点: 黒背景で見えなくなるのを防ぐため、黒(black)の点には白い縁取りを追加 ★★★
+                edge_color = 'white' if style['color'] == 'black' else 'k'
                 scatter = ax.scatter(group_df['PC1'], group_df['PC2'], c=style['color'], marker=style['marker'], label=category_name,
-                                     alpha=0.7, s=50, edgecolors='k', linewidths=0.5)
+                                     alpha=0.7, s=50, edgecolors=edge_color, linewidths=0.5)
                 scatter.set_gid(category_name)
                 scatter_artists.append(scatter)
             legend = ax.legend(title='Category', frameon=True, facecolor='white', edgecolor='black', labelcolor='black')
@@ -335,6 +330,9 @@ class PcaApp:
         fig.tight_layout()
         return fig
 
+    # ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+    # ★★★ 変更点: OptionMenuの項目色を変更するロジックを追加 ★★★
+    # ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
     def _setup_style_ui(self):
         for widget in self.style_inner_frame.winfo_children(): widget.destroy()
         self.style_widgets = {}
@@ -351,26 +349,57 @@ class PcaApp:
             tk.Label(header_frame, text="カテゴリ名", font=("Arial", 9, "bold"), bg=self.FRAME_COLOR, fg=self.TEXT_COLOR).pack(side=tk.LEFT, padx=5)
             tk.Label(header_frame, text="マーカー", font=("Arial", 9, "bold"), bg=self.FRAME_COLOR, fg=self.TEXT_COLOR).pack(side=tk.RIGHT, padx=10)
             tk.Label(header_frame, text="色", font=("Arial", 9, "bold"), bg=self.FRAME_COLOR, fg=self.TEXT_COLOR).pack(side=tk.RIGHT, padx=10)
+            
             for i, category in enumerate(categories):
                 cat_str = str(category)
                 row_frame = tk.Frame(self.style_inner_frame, bg=self.FRAME_COLOR)
                 row_frame.grid(row=i + 1, column=0, sticky="ew", pady=2)
-                tk.Label(row_frame, text=cat_str, bg=self.FRAME_COLOR, fg=self.TEXT_COLOR, width=15, anchor='w', wraplength=100).pack(side=tk.LEFT, padx=5)
+                
+                category_label = tk.Label(row_frame, text=cat_str, bg=self.FRAME_COLOR, fg=self.TEXT_COLOR, width=15, anchor='w', wraplength=100)
+                category_label.pack(side=tk.LEFT, padx=5)
+                
+                # --- マーカー設定 ---
                 marker_var = tk.StringVar(value=self.matplotlib_markers[i % len(self.matplotlib_markers)])
                 marker_menu = tk.OptionMenu(row_frame, marker_var, *self.matplotlib_markers)
                 marker_menu.config(width=4, bg=self.BUTTON_COLOR, fg=self.TEXT_COLOR, activebackground=self.BUTTON_ACTIVE_COLOR, relief=tk.RAISED, direction="below")
                 marker_menu["menu"].config(bg=self.BUTTON_COLOR, fg=self.TEXT_COLOR)
                 marker_menu.pack(side=tk.RIGHT, padx=(0, 5))
+                
+                # --- 色設定 ---
                 color_var = tk.StringVar(value=self.matplotlib_colors[i % len(self.matplotlib_colors)])
+                # ★★★ 変更点 1: OptionMenuを一旦変数に格納する ★★★
                 color_menu = tk.OptionMenu(row_frame, color_var, *self.matplotlib_colors)
                 color_menu.config(width=6, bg=self.BUTTON_COLOR, fg=self.TEXT_COLOR, activebackground=self.BUTTON_ACTIVE_COLOR, relief=tk.RAISED, direction="below")
-                color_menu["menu"].config(bg=self.BUTTON_COLOR, fg=self.TEXT_COLOR)
+                
+                # ★★★ 変更点 2: ドロップダウンメニューの各項目の色を設定する ★★★
+                color_menu_dropdown = color_menu["menu"]
+                color_menu_dropdown.config(bg=self.BUTTON_COLOR, fg=self.TEXT_COLOR)
+                # メニューの各項目に対してループ処理
+                for color_name in self.matplotlib_colors:
+                    # 'command'を使って、選択されたときに色を更新するラムダ関数を各項目に設定
+                    # 'foreground'で各項目の文字色を設定
+                    color_menu_dropdown.entryconfigure(
+                        color_name, 
+                        command=tk._setit(color_var, color_name), # OptionMenuの標準的なコマンド
+                        foreground=color_name
+                    )
+
                 color_menu.pack(side=tk.RIGHT, padx=5)
+
+                initial_color = color_var.get()
+                category_label.config(fg=initial_color)
+
+                color_var.trace_add("write", 
+                                  lambda name, index, mode, var=color_var, label=category_label: 
+                                      label.config(fg=var.get()))
+                
                 self.style_widgets[cat_str] = {'color_var': color_var, 'marker_var': marker_var}
+
         except Exception as e:
             messagebox.showerror("ファイル読み込みエラー", f"ファイルの読み込み中にエラーが発生しました:\n{e}")
             self.file_path = None
             self.path_label.config(text="ファイルが選択されていません")
+
 
     def _get_current_styles(self):
         style_map = {}
