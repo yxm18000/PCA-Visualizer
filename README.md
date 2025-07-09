@@ -15,19 +15,19 @@ CSVデータを読み込み、主成分分析（PCA）を実行して結果を�
   - **散布図**: 主成分スコアをプロット。カテゴリ別の色分けに対応。
  
     
-  - <img width="1541" height="877" alt="Image" src="https://github.com/user-attachments/assets/ec3e60c9-91f4-42f9-ba19-3b595c4c7ebb" />
+   <img width="1541" height="877" alt="Image" src="https://github.com/user-attachments/assets/ec3e60c9-91f4-42f9-ba19-3b595c4c7ebb" />
 
   
   - **寄与率プロット**: 各主成分の重要度を可視化。
  
   
-  - <img width="1547" height="873" alt="Image" src="https://github.com/user-attachments/assets/e48781d9-425e-41af-9510-9520148792d5" />
+   <img width="1547" height="873" alt="Image" src="https://github.com/user-attachments/assets/e48781d9-425e-41af-9510-9520148792d5" />
 
   
   - **ローディングプロット**: 元変数の影響度を可視化。
  
     
-  - <img width="1543" height="871" alt="Image" src="https://github.com/user-attachments/assets/4e4817d4-1307-45b5-9625-a8d80d02ca8d" />
+   <img width="1543" height="871" alt="Image" src="https://github.com/user-attachments/assets/4e4817d4-1307-45b5-9625-a8d80d02ca8d" />
 
   
 - ✅ **インタラクティブな散布図**: データ点にカーソルを合わせると詳細情報（ID、カテゴリなど）を表示。
