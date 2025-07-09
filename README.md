@@ -15,11 +15,11 @@
 *   **簡単な操作**: 3つのステップ（ファイル選択 → 分析実行 → 結果エクスポート）でPCAを実行できます。
 *   **多彩な可視化**:
     *   **散布図**: 主成分1と主成分2でデータをプロットし、全体の分布を把握できます。
-    *   <img width="1548" height="907" alt="Image" src="https://github.com/user-attachments/assets/9a464eb3-dd3b-4233-8e6f-86d2fb0e33a9" />
+      <img width="1548" height="907" alt="Image" src="https://github.com/user-attachments/assets/9a464eb3-dd3b-4233-8e6f-86d2fb0e33a9" />
     *   **寄与率プロット**: 各主成分が元のデータの情報をどの程度説明しているかを確認できます。
-    *   <img width="1546" height="908" alt="Image" src="https://github.com/user-attachments/assets/aeacfea3-0bdc-4c44-b048-df474b0d26cc" />
+      <img width="1546" height="908" alt="Image" src="https://github.com/user-attachments/assets/aeacfea3-0bdc-4c44-b048-df474b0d26cc" />
     *   **ローディングプロット**: 元の変数が各主成分に与える影響の大きさと方向性を理解できます。
-    *   <img width="1550" height="902" alt="Image" src="https://github.com/user-attachments/assets/cb8e8231-f894-4c2b-b00d-931bd90114ed" />
+     <img width="1550" height="902" alt="Image" src="https://github.com/user-attachments/assets/cb8e8231-f894-4c2b-b00d-931bd90114ed" />
 *   **インタラクティブなグラフ**:
     *   散布図上のデータポイントにカーソルを合わせると、そのデータのIDやカテゴリなどの詳細情報がポップアップ表示されます。
 *   **カテゴリ別のスタイリング**:
