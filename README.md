@@ -3,6 +3,9 @@
 CSVデータを読み込み、主成分分析（PCA）を実行して結果をインタラクティブに可視化するためのGUIアプリケーションです。
 
 
+<img width="1919" height="1006" alt="Image" src="https://github.com/user-attachments/assets/12813a19-38c1-4a54-b967-3a002c6b0383" />
+
+
 ## ✨ 機能
 
 - ✅ **簡単な操作**: 3ステップ（ファイル選択 → 分析実行 → 結果確認）でPCAを実行できます。
@@ -10,8 +13,23 @@ CSVデータを読み込み、主成分分析（PCA）を実行して結果を�
 - ✅ **自動前処理**: 数値データを自動で抽出し、標準化を行ってから分析します。
 - ✅ **多角的な可視化**: 分析結果を3種類のグラフでタブ表示します。
   - **散布図**: 主成分スコアをプロット。カテゴリ別の色分けに対応。
+ 
+    
+  - <img width="1541" height="877" alt="Image" src="https://github.com/user-attachments/assets/ec3e60c9-91f4-42f9-ba19-3b595c4c7ebb" />
+
+  
   - **寄与率プロット**: 各主成分の重要度を可視化。
+ 
+  
+  - <img width="1547" height="873" alt="Image" src="https://github.com/user-attachments/assets/e48781d9-425e-41af-9510-9520148792d5" />
+
+  
   - **ローディングプロット**: 元変数の影響度を可視化。
+ 
+    
+  - <img width="1543" height="871" alt="Image" src="https://github.com/user-attachments/assets/4e4817d4-1307-45b5-9625-a8d80d02ca8d" />
+
+  
 - ✅ **インタラクティブな散布図**: データ点にカーソルを合わせると詳細情報（ID、カテゴリなど）を表示。
 - ✅ **柔軟なスタイル設定**: CSVに`category`列があれば、カテゴリ毎に点の色やマーカーを自由に変更可能。
 - ✅ **結果のエクスポート**: 主成分スコアをIDやカテゴリ情報と共にCSVファイルとして保存できます。
