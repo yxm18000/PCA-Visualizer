@@ -59,17 +59,18 @@ CSVデータを読み込み、主成分分析（PCA）を実行して結果を�
 ### `sample_pca_data.csv` の例
 
 ```csv
-sepal.length,sepal.width,petal.length,petal.width,category
-5.1,3.5,1.4,.2,"Setosa"
-4.9,3,1.4,.2,"Setosa"
-...
-7,3.2,4.7,1.4,"Versicolor"
-...
-6.3,3.3,6,2.5,"Virginica"
-...
+ID,sepal.length,sepal.width,petal.length,petal.width,category
+1,5.1,3.5,1.4,0.2,Setosa
+2,4.9,3,1.4,0.2,Setosa
+3,4.7,3.2,1.3,0.2,Setosa
+4,4.6,3.1,1.5,0.2,Setosa
+5,5,3.6,1.4,0.2,Setosa
+6,5.4,3.9,1.7,0.4,Setosa
+7,4.6,3.4,1.4,0.3,Setosa
+8,5,3.4,1.5,0.2,Setosa
 ```
-- `sepal.length`: IDとして扱われる
-- `sepal.width`, `petal.length`, `petal.width`: PCAの分析対象となる数値データ
+- `ID`: IDとして扱われる
+- `sepal.length`, `sepal.width`, `petal.length`, `petal.width`: PCAの分析対象となる数値データ
 - `category`: スタイル設定と色分けに使われるカテゴリデータ
 
 ## 📚 付属ファイル
