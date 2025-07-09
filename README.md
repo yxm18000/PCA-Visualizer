@@ -1,6 +1,7 @@
 # PCA Visualizer
 
 CSVファイルを読み込み、主成分分析（PCA）を実行して、結果を2次元の散布図でインタラクティブに可視化するGUIツールです。
+異なる単位やスケールを持つ様々なCSVデータに対応できるよう、最も一般的で堅牢（ロバスト）な分析手法である**「中心化＋標準化」を適用した上で主成分分析**を行っています。
 
   
 <img width="894" height="726" alt="Image" src="https://github.com/user-attachments/assets/ca66a5ba-549f-483f-8ec6-3f519e3d04cf" />
